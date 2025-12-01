@@ -247,57 +247,57 @@ class Juego:
 
 
 # class JuegoD10(Juego):
-    '''Clase que representa un juego de D10 (Destino 10).'''
+#     '''Clase que representa un juego de D10 (Destino 10).'''
 
-    def __init__(self, jugador1, jugador2):
-        '''Crea e inicializa un nuevo juego de D10 con dos jugadores.'''
-        self.valida_tipo_argumento(jugador1, JugadorD10)
-        self.valida_tipo_argumento(jugador2, JugadorD10)
-        super(JuegoD10, self).__init__(jugador1, jugador2)
+#     def __init__(self, jugador1, jugador2):
+#         '''Crea e inicializa un nuevo juego de D10 con dos jugadores.'''
+#         self.valida_tipo_argumento(jugador1, JugadorD10)
+#         self.valida_tipo_argumento(jugador2, JugadorD10)
+#         super(JuegoD10, self).__init__(jugador1, jugador2)
 
-    def posicion_inicial(self):
-        return (self._jugador_actual.nombre, 0)
+#     def posicion_inicial(self):
+#         return (self._jugador_actual.nombre, 0)
 
-    def imprime_posicion(self):
-        suma = self._posicion[1]
-        print(' _' * 10)
-        print('| ' * 10 + '|')
-        print('|*' * suma + '| ' * (10 - suma) + '|')
-        print('|_' * 10 + '|')
-        print('Total {}'.format(suma))
-        print('')
+#     def imprime_posicion(self):
+#         suma = self._posicion[1]
+#         print(' _' * 10)
+#         print('| ' * 10 + '|')
+#         print('|*' * suma + '| ' * (10 - suma) + '|')
+#         print('|_' * 10 + '|')
+#         print('Total {}'.format(suma))
+#         print('')
 
-    def posiciones_siguientes(self, posicion):
-        turno = self.simbolo_contrario(posicion[0])
-        suma = posicion[1]
-        resultado = []
-        if (suma <= 9):
-            resultado.append((turno, suma + 1))
-        if (suma <= 8):
-            resultado.append((turno, suma + 2))
-        return tuple(resultado)
+#     def posiciones_siguientes(self, posicion):
+#         turno = self.simbolo_contrario(posicion[0])
+#         suma = posicion[1]
+#         resultado = []
+#         if (suma <= 9):
+#             resultado.append((turno, suma + 1))
+#         if (suma <= 8):
+#             resultado.append((turno, suma + 2))
+#         return tuple(resultado)
 
-    def juego_terminado(self, posicion):
-        return (self.triunfo(self._jugador1, posicion)
-                or self.triunfo(self._jugador2, posicion))
+#     def juego_terminado(self, posicion):
+#         return (self.triunfo(self._jugador1, posicion)
+#                 or self.triunfo(self._jugador2, posicion))
 
-    def triunfo(self, jugador, posicion):
-        return (posicion[1] == 10
-                and jugador.simbolo == self.simbolo_contrario(posicion[0]))
+#     def triunfo(self, jugador, posicion):
+#         return (posicion[1] == 10
+#                 and jugador.simbolo == self.simbolo_contrario(posicion[0]))
 
-    def pre_tiro(self):
-        self._suma_actual = self._posicion[1]
+#     def pre_tiro(self):
+#         self._suma_actual = self._posicion[1]
 
-    def post_tiro(self):
-        print('')
-        print('[{}] Jugador {} tira {}'.format(
-            self._num_tiro,
-            self._jugador_actual.nombre,
-            self._posicion[1] - self._suma_actual))
+#     def post_tiro(self):
+#         print('')
+#         print('[{}] Jugador {} tira {}'.format(
+#             self._num_tiro,
+#             self._jugador_actual.nombre,
+#             self._posicion[1] - self._suma_actual))
 
-    def imprime_resultado(self):
-        print('>>>>>> GANADOR: {} <<<<<<<'.format(self._jugador_actual))
-        print('')
+#     def imprime_resultado(self):
+#         print('>>>>>> GANADOR: {} <<<<<<<'.format(self._jugador_actual))
+#         print('')
 
 # ----------------------------------------------------------
 
@@ -320,225 +320,225 @@ def dibuja_tablero(t):
 
 
 # class JuegoSuperGato(Juego):
-    '''Clase que representa un juego de SuperGato.'''
+#     '''Clase que representa un juego de SuperGato.'''
 
-    @property
-    def renglones(self):
-        return self._renglones
+#     @property
+#     def renglones(self):
+#         return self._renglones
 
-    @property
-    def columnas(self):
-        return self._columnas
+#     @property
+#     def columnas(self):
+#         return self._columnas
 
-    def __init__(self, jugador1, jugador2, renglones, columnas):
-        '''Crea e inicializa un nuevo juego de SuperGato con dos jugadores y
-        un tablero del tamaño indicado por renglones y columnas.'''
-        self.valida_tipo_argumento(jugador1, JugadorSuperGato)
-        self.valida_tipo_argumento(jugador2, JugadorSuperGato)
-        self.valida_tipo_argumento(renglones, int)
-        self.valida_tipo_argumento(columnas, int)
+#     def __init__(self, jugador1, jugador2, renglones, columnas):
+#         '''Crea e inicializa un nuevo juego de SuperGato con dos jugadores y
+#         un tablero del tamaño indicado por renglones y columnas.'''
+#         self.valida_tipo_argumento(jugador1, JugadorSuperGato)
+#         self.valida_tipo_argumento(jugador2, JugadorSuperGato)
+#         self.valida_tipo_argumento(renglones, int)
+#         self.valida_tipo_argumento(columnas, int)
 
-        jugador1._simbolo = 'X'
-        jugador2._simbolo = 'O'
-        super(JuegoSuperGato, self).__init__(jugador1, jugador2)
+#         jugador1._simbolo = 'X'
+#         jugador2._simbolo = 'O'
+#         super(JuegoSuperGato, self).__init__(jugador1, jugador2)
 
-        if not (3 <= renglones <= 10 and 3 <= columnas <= 10):
-            mensaje = (
-                'Número de renglones y/o columnas fuera de rango: ({}, {})'
-                .format(renglones, columnas))
-            raise ValueError(mensaje)
+#         if not (3 <= renglones <= 10 and 3 <= columnas <= 10):
+#             mensaje = (
+#                 'Número de renglones y/o columnas fuera de rango: ({}, {})'
+#                 .format(renglones, columnas))
+#             raise ValueError(mensaje)
 
-        self._renglones = renglones
-        self._columnas = columnas
+#         self._renglones = renglones
+#         self._columnas = columnas
 
-    def posicion_inicial(self):
-        return (self._jugador_actual.simbolo,
-                ((' ',) * self._columnas,) * self._renglones)
+#     def posicion_inicial(self):
+#         return (self._jugador_actual.simbolo,
+#                 ((' ',) * self._columnas,) * self._renglones)
 
-    def imprime_posicion(self):
-        dibuja_tablero(self._posicion[1])
+#     def imprime_posicion(self):
+#         dibuja_tablero(self._posicion[1])
 
-    def posiciones_siguientes(self, posicion):
-        turno_actual = posicion[0]
-        turno_siguiente = self.simbolo_contrario(turno_actual)
-        tablero = posicion[1]
-        resultado = []
-        for r in range(self._renglones):
-            for c in range(self._columnas):
-                if tablero[r][c] == ' ':
-                    a = [list(ren) for ren in tablero]
-                    a[r][c] = turno_actual
-                    a = tuple([tuple(ren) for ren in a])
-                    resultado.append((turno_siguiente, a))
-        return tuple(resultado)
+#     def posiciones_siguientes(self, posicion):
+#         turno_actual = posicion[0]
+#         turno_siguiente = self.simbolo_contrario(turno_actual)
+#         tablero = posicion[1]
+#         resultado = []
+#         for r in range(self._renglones):
+#             for c in range(self._columnas):
+#                 if tablero[r][c] == ' ':
+#                     a = [list(ren) for ren in tablero]
+#                     a[r][c] = turno_actual
+#                     a = tuple([tuple(ren) for ren in a])
+#                     resultado.append((turno_siguiente, a))
+#         return tuple(resultado)
 
-    def juego_terminado(self, posicion):
+#     def juego_terminado(self, posicion):
 
-        def empate():
-            for r in self._posicion[1]:
-                for c in r:
-                    if c == ' ':
-                        return False
-            return True
+#         def empate():
+#             for r in self._posicion[1]:
+#                 for c in r:
+#                     if c == ' ':
+#                         return False
+#             return True
 
-        return (self.triunfo(self._jugador1, posicion)
-                or self.triunfo(self._jugador2, posicion)
-                or empate())
+#         return (self.triunfo(self._jugador1, posicion)
+#                 or self.triunfo(self._jugador2, posicion)
+#                 or empate())
 
-    def triunfo(self, jugador, posicion):
-        t = posicion[1]
-        s = jugador.simbolo
-        for r in range(self._renglones):
-            for c in range(self._columnas):
-                if ((r + 2 < self._renglones
-                     and s == t[r][c] == t[r + 1][c] == t[r + 2][c])
-                    or
-                    (c + 2 < self._columnas
-                     and s == t[r][c] == t[r][c + 1] == t[r][c + 2])):
-                    return True
-        return False
+#     def triunfo(self, jugador, posicion):
+#         t = posicion[1]
+#         s = jugador.simbolo
+#         for r in range(self._renglones):
+#             for c in range(self._columnas):
+#                 if ((r + 2 < self._renglones
+#                      and s == t[r][c] == t[r + 1][c] == t[r + 2][c])
+#                     or
+#                     (c + 2 < self._columnas
+#                      and s == t[r][c] == t[r][c + 1] == t[r][c + 2])):
+#                     return True
+#         return False
 
-    def pre_tiro(self):
-        self._tablero_previo = self._posicion[1]
+#     def pre_tiro(self):
+#         self._tablero_previo = self._posicion[1]
 
-    def post_tiro(self):
+#     def post_tiro(self):
 
-        def tiro():
-            tp = self._tablero_previo
-            tn = self._posicion[1]
-            for r in range(self._renglones):
-                for c in range(self._columnas):
-                    if tp[r][c] != tn[r][c]:
-                        return '{}{}'.format(r, c)
+#         def tiro():
+#             tp = self._tablero_previo
+#             tn = self._posicion[1]
+#             for r in range(self._renglones):
+#                 for c in range(self._columnas):
+#                     if tp[r][c] != tn[r][c]:
+#                         return '{}{}'.format(r, c)
 
-        print('[{}] Jugador {} tira {}'.format(
-            self._num_tiro,
-            self._jugador_actual.simbolo,
-            tiro()))
+#         print('[{}] Jugador {} tira {}'.format(
+#             self._num_tiro,
+#             self._jugador_actual.simbolo,
+#             tiro()))
 
-    def imprime_resultado(self):
-        ganador = (self._jugador1
-                   if self.triunfo(self._jugador1, self._posicion)
-                   else (self._jugador2
-                         if self.triunfo(self._jugador2, self._posicion)
-                         else None))
-        if ganador:
-            print('>>>>>> GANADOR: {} <<<<<<<'.format(ganador))
-        else:
-            print('>>>>>> EMPATE <<<<<<<')
-        print('')
+#     def imprime_resultado(self):
+#         ganador = (self._jugador1
+#                    if self.triunfo(self._jugador1, self._posicion)
+#                    else (self._jugador2
+#                          if self.triunfo(self._jugador2, self._posicion)
+#                          else None))
+#         if ganador:
+#             print('>>>>>> GANADOR: {} <<<<<<<'.format(ganador))
+#         else:
+#             print('>>>>>> EMPATE <<<<<<<')
+#         print('')
 
 # ----------------------------------------------------------
 
 
 # class JuegoOrugas(Juego):
-    '''Clase que representa un juego de Orugas.'''
+#     '''Clase que representa un juego de Orugas.'''
 
-    @property
-    def renglones(self):
-        return self._renglones
+#     @property
+#     def renglones(self):
+#         return self._renglones
 
-    @property
-    def columnas(self):
-        return self._columnas
+#     @property
+#     def columnas(self):
+#         return self._columnas
 
-    def __init__(self, jugador1, jugador2, renglones, columnas):
-        '''Crea e inicializa un nuevo juego de Orugas con dos jugadores y
-        un tablero del tamaño indicado por renglones y columnas.'''
-        self.valida_tipo_argumento(jugador1, JugadorOrugas)
-        self.valida_tipo_argumento(jugador2, JugadorOrugas)
-        self.valida_tipo_argumento(renglones, int)
-        self.valida_tipo_argumento(columnas, int)
+#     def __init__(self, jugador1, jugador2, renglones, columnas):
+#         '''Crea e inicializa un nuevo juego de Orugas con dos jugadores y
+#         un tablero del tamaño indicado por renglones y columnas.'''
+#         self.valida_tipo_argumento(jugador1, JugadorOrugas)
+#         self.valida_tipo_argumento(jugador2, JugadorOrugas)
+#         self.valida_tipo_argumento(renglones, int)
+#         self.valida_tipo_argumento(columnas, int)
 
-        jugador1._simbolo = 'B'
-        jugador2._simbolo = 'N'
-        super(JuegoOrugas, self).__init__(jugador1, jugador2)
+#         jugador1._simbolo = 'B'
+#         jugador2._simbolo = 'N'
+#         super(JuegoOrugas, self).__init__(jugador1, jugador2)
 
-        if not (4 <= renglones <= 10 and 4 <= columnas <= 10):
-            mensaje = (
-                'Número de renglones y/o columnas fuera de rango: ({}, {})'
-                .format(renglones, columnas))
-            raise ValueError(mensaje)
+#         if not (4 <= renglones <= 10 and 4 <= columnas <= 10):
+#             mensaje = (
+#                 'Número de renglones y/o columnas fuera de rango: ({}, {})'
+#                 .format(renglones, columnas))
+#             raise ValueError(mensaje)
 
-        self._renglones = renglones
-        self._columnas = columnas
+#         self._renglones = renglones
+#         self._columnas = columnas
 
-    def posicion_inicial(self):
+#     def posicion_inicial(self):
 
-        def coloca_al_azar(simbolo):
-            while True:
-                r = randint(0, self._renglones - 1)
-                c = randint(0, self._columnas - 1)
-                if a[r][c] == ' ':
-                    a[r][c] = simbolo
-                    return
+#         def coloca_al_azar(simbolo):
+#             while True:
+#                 r = randint(0, self._renglones - 1)
+#                 c = randint(0, self._columnas - 1)
+#                 if a[r][c] == ' ':
+#                     a[r][c] = simbolo
+#                     return
 
-        a = [[' ' for _c in range(self._columnas)]
-             for _r in range(self._renglones)]
-        coloca_al_azar(self._jugador1.simbolo)
-        coloca_al_azar(self._jugador2.simbolo)
-        a = tuple([tuple(ren) for ren in a])
-        return (self._jugador_actual.simbolo, a)
+#         a = [[' ' for _c in range(self._columnas)]
+#              for _r in range(self._renglones)]
+#         coloca_al_azar(self._jugador1.simbolo)
+#         coloca_al_azar(self._jugador2.simbolo)
+#         a = tuple([tuple(ren) for ren in a])
+#         return (self._jugador_actual.simbolo, a)
 
-    def imprime_posicion(self):
-        dibuja_tablero(self._posicion[1])
+#     def imprime_posicion(self):
+#         dibuja_tablero(self._posicion[1])
 
-    def posiciones_siguientes(self, posicion):
+#     def posiciones_siguientes(self, posicion):
 
-        def busca_posicion(delta_r, delta_c):
-            rm = r + delta_r if r + delta_r < rens else 0
-            cm = c + delta_c if c + delta_c < cols else 0
-            if tablero[rm][cm] == ' ':
-                a = [list(ren) for ren in tablero]
-                a[r][c] = turno_actual.lower()
-                a[rm][cm] = turno_actual
-                a = tuple([tuple(ren) for ren in a])
-                resultado.append((turno_siguiente, a))
+#         def busca_posicion(delta_r, delta_c):
+#             rm = r + delta_r if r + delta_r < rens else 0
+#             cm = c + delta_c if c + delta_c < cols else 0
+#             if tablero[rm][cm] == ' ':
+#                 a = [list(ren) for ren in tablero]
+#                 a[r][c] = turno_actual.lower()
+#                 a[rm][cm] = turno_actual
+#                 a = tuple([tuple(ren) for ren in a])
+#                 resultado.append((turno_siguiente, a))
 
-        turno_actual = posicion[0]
-        turno_siguiente = self.simbolo_contrario(turno_actual)
-        tablero = posicion[1]
-        resultado = []
-        rens = self._renglones
-        cols = self._columnas
-        for r in range(self._renglones):
-            for c in range(self._columnas):
-                if tablero[r][c] == turno_actual:
-                    busca_posicion(-1, 0)
-                    busca_posicion(1, 0)
-                    busca_posicion(0, -1)
-                    busca_posicion(0, 1)
+#         turno_actual = posicion[0]
+#         turno_siguiente = self.simbolo_contrario(turno_actual)
+#         tablero = posicion[1]
+#         resultado = []
+#         rens = self._renglones
+#         cols = self._columnas
+#         for r in range(self._renglones):
+#             for c in range(self._columnas):
+#                 if tablero[r][c] == turno_actual:
+#                     busca_posicion(-1, 0)
+#                     busca_posicion(1, 0)
+#                     busca_posicion(0, -1)
+#                     busca_posicion(0, 1)
 
-        return tuple(resultado)
+#         return tuple(resultado)
 
-    def juego_terminado(self, posicion):
-        return not self.posiciones_siguientes(posicion)
+#     def juego_terminado(self, posicion):
+#         return not self.posiciones_siguientes(posicion)
 
-    def triunfo(self, jugador, posicion):
-        s = self.simbolo_contrario(jugador.simbolo)
-        return s == posicion[0] and self.juego_terminado(posicion)
+#     def triunfo(self, jugador, posicion):
+#         s = self.simbolo_contrario(jugador.simbolo)
+#         return s == posicion[0] and self.juego_terminado(posicion)
 
-    def pre_tiro(self):
-        pass
+#     def pre_tiro(self):
+#         pass
 
-    def post_tiro(self):
+#     def post_tiro(self):
 
-        def tiro():
-            t = self._posicion[1]
-            for r in range(self._renglones):
-                for c in range(self._columnas):
-                    if t[r][c] == s:
-                        return '{}{}'.format(r, c)
+#         def tiro():
+#             t = self._posicion[1]
+#             for r in range(self._renglones):
+#                 for c in range(self._columnas):
+#                     if t[r][c] == s:
+#                         return '{}{}'.format(r, c)
 
-        s = self._jugador_actual.simbolo
-        print('[{}] Jugador {} tira {}'.format(self._num_tiro, s, tiro()))
+#         s = self._jugador_actual.simbolo
+#         print('[{}] Jugador {} tira {}'.format(self._num_tiro, s, tiro()))
 
-    def imprime_resultado(self):
-        ganador = (self._jugador1
-                   if self.triunfo(self._jugador1, self._posicion)
-                   else self._jugador2)
-        print('>>>>>> GANADOR: {} <<<<<<<'.format(ganador))
-        print('')
+#     def imprime_resultado(self):
+#         ganador = (self._jugador1
+#                    if self.triunfo(self._jugador1, self._posicion)
+#                    else self._jugador2)
+#         print('>>>>>> GANADOR: {} <<<<<<<'.format(ganador))
+#         print('')
 
 # ----------------------------------------------------------
 
@@ -831,31 +831,31 @@ class Jugador:
 
 
 # class JugadorD10Interactivo(JugadorD10):
-    '''Jugador de D10 controlado a partir de una interfaz
-    de usuario en modo texto.'''
+    # '''Jugador de D10 controlado a partir de una interfaz
+    # de usuario en modo texto.'''
 
-    def heuristica(self, posicion):
-        '''Vacío. Los jugadores interactivos no requieren tener una función
-        heurística.'''
-        pass
+    # def heuristica(self, posicion):
+    #     '''Vacío. Los jugadores interactivos no requieren tener una función
+    #     heurística.'''
+    #     pass
 
-    def tira(self, posicion):
-        '''Realiza el tiro a partir de la selección hecha por el usuario
-        desde la entrada estándar. Se cicla hasta que el usuario realice
-        un tiro válido.'''
-        suma_actual = posicion[1]
-        posibles = self.posiciones_siguientes(posicion)
-        while True:
-            entrada = input(
-                'Jugador {}, teclea tu tiro (1 o 2): '.format(self.simbolo))
-            try:
-                opcion = int(entrada)
-            except ValueError:
-                opcion = 0
-            for p in posibles:
-                if p[1] == suma_actual + opcion:
-                    return p
-            print('Tiro inválido.')
+    # def tira(self, posicion):
+    #     '''Realiza el tiro a partir de la selección hecha por el usuario
+    #     desde la entrada estándar. Se cicla hasta que el usuario realice
+    #     un tiro válido.'''
+    #     suma_actual = posicion[1]
+    #     posibles = self.posiciones_siguientes(posicion)
+    #     while True:
+    #         entrada = input(
+    #             'Jugador {}, teclea tu tiro (1 o 2): '.format(self.simbolo))
+    #         try:
+    #             opcion = int(entrada)
+    #         except ValueError:
+    #             opcion = 0
+    #         for p in posibles:
+    #             if p[1] == suma_actual + opcion:
+    #                 return p
+    #         print('Tiro inválido.')
 
 # ----------------------------------------------------------
 
@@ -896,21 +896,21 @@ class Jugador:
 
 
 # class JugadorSuperGatoAleatorio(JugadorSuperGato):
-    '''Jugador de SuperGato que tira de manera aleatoria.'''
+    # '''Jugador de SuperGato que tira de manera aleatoria.'''
 
-    def heuristica(self, posicion):
-        '''Devuelve True si posicion resulta en un tiro ganador para este
-        Jugador. De otra forma regresa False.'''
-        return self.triunfo(posicion) == self.simbolo
+    # def heuristica(self, posicion):
+    #     '''Devuelve True si posicion resulta en un tiro ganador para este
+    #     Jugador. De otra forma regresa False.'''
+    #     return self.triunfo(posicion) == self.simbolo
 
-    def tira(self, posicion):
-        '''Busca si se tiene un tiro ganador, sino selecciona cualquier
-        tiro válido al azar.'''
-        posibles = self.posiciones_siguientes(posicion)
-        for p in posibles:
-            if self.heuristica(p):
-                return p
-        return choice(posibles)
+    # def tira(self, posicion):
+    #     '''Busca si se tiene un tiro ganador, sino selecciona cualquier
+    #     tiro válido al azar.'''
+    #     posibles = self.posiciones_siguientes(posicion)
+    #     for p in posibles:
+    #         if self.heuristica(p):
+    #             return p
+    #     return choice(posibles)
 
 # ----------------------------------------------------------
 
@@ -1102,30 +1102,30 @@ def _ren_col(op, tablero):
 
 
 # class JugadorOrugasInteractivo(JugadorOrugas):
-    '''Jugador de Orugas controlado a partir de una interfaz
-    de usuario en modo texto.'''
+#     '''Jugador de Orugas controlado a partir de una interfaz
+#     de usuario en modo texto.'''
 
-    def heuristica(self, posicion):
-        '''Vacío. Los jugadores interactivos no requieren tener una función
-        heurística.'''
-        pass
+#     def heuristica(self, posicion):
+#         '''Vacío. Los jugadores interactivos no requieren tener una función
+#         heurística.'''
+#         pass
 
-    def tira(self, posicion):
-        '''Realiza el tiro a partir de la selección hecha por el usuario
-        desde la entrada estándar. Se cicla hasta que el usuario realice
-        un tiro válido.'''
-        tablero = posicion[1]
-        posibles = self.posiciones_siguientes(posicion)
-        while True:
-            entrada = input(
-                'Jugador {}, teclea tu tiro: '.format(self.simbolo))
-            tiro_valido = _ren_col(entrada, tablero)
-            if tiro_valido:
-                r, c = tiro_valido
-                for p in posibles:
-                    if p[1][r][c] == self.simbolo:
-                        return p
-            print('Tiro inválido.')
+#     def tira(self, posicion):
+#         '''Realiza el tiro a partir de la selección hecha por el usuario
+#         desde la entrada estándar. Se cicla hasta que el usuario realice
+#         un tiro válido.'''
+#         tablero = posicion[1]
+#         posibles = self.posiciones_siguientes(posicion)
+#         while True:
+#             entrada = input(
+#                 'Jugador {}, teclea tu tiro: '.format(self.simbolo))
+#             tiro_valido = _ren_col(entrada, tablero)
+#             if tiro_valido:
+#                 r, c = tiro_valido
+#                 for p in posibles:
+#                     if p[1][r][c] == self.simbolo:
+#                         return p
+#             print('Tiro inválido.')
 
 
 class JugadorCaballosBailadores(Jugador):
@@ -1189,7 +1189,7 @@ class JugadorCaballosBailadoresAleatorio(JugadorCaballosBailadores):
         return choice(posibles)
 
 
-# class JugadorCaballosBailadoresInteractivo(JugadorCaballosBailadores):
+class JugadorCaballosBailadoresInteractivo(JugadorCaballosBailadores):
 
     '''Jugador de Caballos bailadores controlado a partir de una interfaz
     de usuario en modo texto.'''
