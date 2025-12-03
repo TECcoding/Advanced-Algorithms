@@ -9,7 +9,7 @@
 from dagor import JugadorCaballosBailadores
 
 
-class JugadorCaballosBailadoresEquipo2(JugadorCaballosBailadores):
+class JugadorCaballosBailadoresSimple(JugadorCaballosBailadores):
     """
     Jugador para Caballos bailadores basado en búsqueda minimax
     con profundidad fija y una heurística sencilla de distancias.
@@ -157,11 +157,11 @@ class JugadorCaballosBailadoresEquipo2(JugadorCaballosBailadores):
         return score
     
 from dagor import JuegoCaballosBailadores, JugadorCaballosBailadoresAleatorio
-from equipo2 import JugadorCaballosBailadoresEquipo2  # ajusta X
+from equipo2 import JugadorCaballosBailadoresSimple  # ajusta X
 
 if __name__ == '__main__':
     juego = JuegoCaballosBailadores(
-        JugadorCaballosBailadoresEquipo2('Equipo 2'),
+        JugadorCaballosBailadoresSimple('Equipo 2'),
         JugadorCaballosBailadoresAleatorio('RandomBoy'),
         5, 8
     )
